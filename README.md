@@ -116,7 +116,11 @@ Abrir `http://localhost:5173`.
 | GET | `/auth/google/callback` | — | Callback OAuth Google |
 | POST | `/usuarios` | — | Registrar usuario |
 | GET | `/usuarios` | Admin | Listar usuarios |
+| GET | `/usuarios/:id` | Admin | Obtener usuario por ID |
+| PUT | `/usuarios/:id` | Admin | Actualizar usuario |
+| DELETE | `/usuarios/:id` | Admin | Eliminar usuario |
 | GET | `/libros` | Token | Catálogo de libros |
+| GET | `/libros/:id` | Token | Obtener libro por ID |
 | POST | `/libros` | Admin | Crear libro |
 | PUT | `/libros/:id` | Admin | Actualizar libro |
 | DELETE | `/libros/:id` | Admin | Eliminar libro |
@@ -127,13 +131,30 @@ Abrir `http://localhost:5173`.
 
 ---
 
+## Frontend — Rutas
+
+| Ruta | Página | Acceso |
+|------|--------|--------|
+| `/login` | Login.jsx | Público |
+| `/oauth/callback` | OAuthCallback.jsx | Público (callback de Google) |
+| `/` | Dashboard.jsx | Requiere token JWT |
+
+## Roles
+
+- **admin** — CRUD completo de libros, listar usuarios, revisar solicitudes
+- **usuario** — Ver catálogo, solicitar préstamos, proponer libros, devolver prestados
+
+---
+
 ## Scripts disponibles
 
 ```bash
-npm run seed:admin     # Crear o actualizar usuario administrador
-npm run seed:libros    # Poblar catalogo con 15 libros de ejemplo
+npm run seed:admin     # Crear o actualizar usuario administrador (backend)
+npm run seed:libros    # Poblar catalogo con 15 libros de ejemplo (backend)
 npm run dev            # Iniciar servidor en modo desarrollo
 npm start              # Iniciar servidor en modo produccion
+npm run build          # Compilar frontend para produccion (frontend)
+npm run preview        # Vista previa del build de produccion (frontend)
 ```
 
 ---
